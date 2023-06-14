@@ -1,0 +1,717 @@
+body
+{
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    background-image: url(img/bg.jpg);
+}
+
+.content
+{
+    max-width: 1140px;
+    padding: 0px 15px 0px 15px;
+}
+
+/*
+NAVABAR
+*/
+#navbar
+{
+    float: left;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 0;
+    height: 48px;
+    width: 100%;
+}
+
+#navbar .content
+{
+    margin: 0 auto;
+}
+
+.navbar-nav
+{
+    margin: 0 auto;
+    padding: 0;
+    max-width: 721px;
+    
+}
+
+.navbar-nav li
+{
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    vertical-align: middle;
+}
+
+.navbar-nav  li  a 
+{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    
+}
+
+/*
+END NAVBAR
+*/
+
+/*
+SECTION HOME
+*/
+
+#section-home
+{
+    height: 95vh;
+    margin: 0 auto;
+    max-width: 1140px;
+}
+
+#section-home .content
+{
+    margin: 0 auto;
+    position: relative;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+h1
+{
+    color: white;
+    margin: 0 auto;
+    font-size: 64px;
+    font-family: Montserrat;
+    font-weight: lighter;
+    text-align: center;
+}
+
+p.sub-heading
+{
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 auto;
+    margin-top: 8px;
+    max-width: 590px;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: lighter;
+    line-height: 34px;
+    text-align: center;
+    
+    
+}
+p.sub-heading + p
+{
+    margin: 0 auto;
+    margin-top: 40px;
+    border-color:  rgba(255, 255, 255, 0.8);
+    border-style: solid;
+    border-width: 1px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+
+p.sub-heading + p:hover
+{
+    background-color: white;
+}
+
+p.sub-heading + p .btn
+{
+    position: relative;
+    top: 17px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    z-index: 1;
+}
+
+p.sub-heading + p:hover .btn
+{
+    color: #74706d;
+}
+
+/*
+END SECTION HOME
+*/
+
+/*
+SECTION ABOUT
+*/
+
+#section-about
+{
+    margin: 0 auto;
+    background-color: white;
+    width: 100%;
+    overflow: auto;
+}
+
+#section-about .content
+{
+    padding-top: 150px;
+    padding-bottom: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#section-about .content .photos
+{
+    float: left;
+}
+
+#section-about .content .photos p
+{
+    display: inline-block;
+    margin-left: 12px;
+    margin-right: 12px;
+    min-width: 350px;
+}
+
+.img-fluid
+{
+    width: 350px;
+}
+
+.descript
+{
+    float: left;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    min-width: 350px;
+    width: 33%;
+}
+
+.descript h2
+{
+    color: #212529;
+    font-size: 32px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    width: 33%;
+    margin-left: 40px;
+}
+
+.descript p
+{
+    min-width: 315px;
+    width: 33%;
+    color:  #868e96;
+    font-size: 16px;
+    font-family: Montserrat;
+    margin-left: 40px;
+    line-height: 28px;
+}
+
+.descript p a
+{
+    color: #ee0427;
+    text-decoration: none;
+}
+
+.descript p a:hover
+{
+    color: #005dd0;
+    text-decoration: none;
+}
+
+/*
+END SECTION ABOUT
+*/
+
+/*
+SECTION MENU
+*/
+
+#section-menu
+{
+    margin: 0 auto;
+    background-color: white;
+    width: 100%;
+    overflow: hidden;
+}
+
+#section-menu .content
+{
+    padding-top: 50px;
+    margin: 0 auto;
+}
+
+#section-menu .content h2
+{
+    color: #212529;
+    font-size: 32px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    margin: 0 auto;
+    width: 120px;
+}
+
+.tabs
+{
+    list-style-type: none;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    padding: 0;
+    width: 295px;
+}
+
+.tabs li
+{
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    margin-right: 15px;
+    margin-top: 60px;
+    height: 50px;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.tabs li:last-child
+{
+    margin-right: 0px;
+}
+
+.tabs li .btn
+{   
+    position: relative;
+    top: 16px;
+    font-size: 13px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #212529;
+    letter-spacing: 0.2em;
+}
+
+.tabs li:focus-within
+{
+    border-color: rgba(0, 0, 0, 1);
+}
+
+.menucols
+{
+    overflow: hidden;
+    margin-bottom: 200px;
+}
+
+.menucols ul
+{
+    float: left;
+    min-width: 500px;
+    width: 50%;
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.menucols li
+{
+    overflow: auto;
+}
+
+.menuitem
+{
+    float: left;
+}
+
+.menuitem h3
+{
+    color: #212529;
+    font-family: Montserrat;
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+.menuitem p
+{
+    font-family: Montserrat;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 14px;
+}
+
+.price
+{
+    float: right;
+    padding-top:30px;
+    padding-right: 46px;
+    font-family: Montserrat;
+}
+/*
+END SECTION MENU
+*/
+
+/*
+SECTION DARK
+*/
+
+#section-menu + .dark
+{
+    width: 100%;
+    height: 580px;
+    margin: 0 auto;
+    background-image: url(img/bg.jpg);
+}
+
+#section-menu + .dark .content
+{
+    position: relative;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#section-menu + .dark .content h2
+{
+    color: white;
+    margin: 0 auto;
+    font-size: 64px;
+    font-family: Montserrat;
+    font-weight: lighter;
+    text-align: center;
+}
+
+/*
+END SECTION DARK
+*/
+
+/*
+SECTION GALLERY
+*/
+
+#section-gallery
+{
+    margin: 0 auto;
+    background-color: white;
+    width: 100%;
+}
+
+#section-gallery .content
+{
+    padding-top: 150px;
+    padding-bottom: 150px;
+    margin: 0 auto;
+}
+
+#section-gallery .content h2
+{
+    color: #212529;
+    font-size: 32px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    width: 187px;
+    margin: 0 auto;
+}
+
+#section-gallery .content .photos
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+#section-gallery .content .photos p
+{
+    
+    margin: 10px;
+}
+
+#section-gallery .content .photos p img
+{
+    max-width:100%;
+}
+
+/*
+END SECTION GALLERY
+*/
+
+/*
+SECTION TESTIMONIALS
+*/
+
+#section-testimonials
+{
+    background-color: #e4f8f4;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#section-testimonials .content
+{
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+#section-testimonials .content h2
+{
+    color: #212529;
+    font-size: 32px;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    width: 448px;
+    margin: 0 auto;
+}
+
+.testimonial
+{
+    float: left;
+    width: 33%;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+blockquote::before
+{
+    display: block;
+    content: " “ ";
+    font-size: 110px;
+}
+
+blockquote
+{
+    color:  #212529;
+    font-size: 20px;
+    font-family: Crimson Text;
+    line-height: 28px;
+    text-align: center;
+    margin: 0 auto;
+    margin-right: 10px;
+    padding: 0px 5px 0px 5px;
+}
+
+.rounded-circle
+{
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.name
+{
+    margin: 0 auto;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    font-family: Montserrat;
+    text-align: center;
+}
+
+.nick
+{
+    margin: 0 auto;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+    font-family: Montserrat;
+    line-height: 28px;
+    text-align: center;
+}
+
+/*
+END SECTION TESTIMONIALS
+*/
+
+/*
+START SECTION TASTE
+*/
+
+#section-taste
+{
+    width: 100%;
+    height: 580px;
+    margin: 0 auto;
+    background-image: url(img/bg.jpg);
+}
+
+#section-taste .content
+{
+    position: relative;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#section-taste .content h2
+{
+    color: white;
+    margin: 0 auto;
+    font-size: 64px;
+    font-family: Montserrat;
+    font-weight: lighter;
+    text-align: center;
+}
+
+/*
+END SECTION TASTE
+*/
+
+/*
+SECTION EVENTS
+*/
+
+#section-events
+{
+    margin: 0 auto;
+    width: 100%;
+    background-color: #f8f9fa;
+}
+
+#section-events .content
+{
+    margin: 0 auto;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
+#section-events h2
+{
+    color: #212529;
+    font-size: 32px;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    width: 160px;
+    margin: 0 auto;
+}
+
+.card-deck
+{
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.card
+{
+    width: 33%;
+    min-width: 350px;
+    margin-top: 50px;   
+}
+
+.card-img-top
+{
+    display: block;
+    width: 330px;
+    margin: 0 auto;
+}
+
+.card-body
+{
+    width: 330px;
+    margin: 0 auto;
+    height: 300px;
+    padding-top: 60px;
+    background-color: white;
+}
+
+.card-body small
+{
+    font-family: Montserrat;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.6);
+    padding-left: 30px;
+}
+
+.card-body h4
+{
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 50px;
+    
+}
+
+.card-body h4 a
+{
+    color: #ee0427;
+    text-decoration: none;
+}
+
+.card-body h4 a:hover
+{
+    color: #005dd0;
+}
+
+.card-body p
+{
+    margin: 0 auto;
+    color: rgba(0, 0, 0, 0.6);
+    color: #868e96;
+    font-size: 16px;
+    padding-right: 35px;
+    font-family: Montserrat;
+    line-height: 28px;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 40px;    
+}
+
+/*
+END SECTION EVENTS
+*/
+
+/*
+FOOTER
+*/
+
+#footer
+{
+    width: 100%;
+    background-color: #f8f9fa;
+    padding-top: 50px;
+    padding-bottom: 100px;
+
+}
+
+#footer .content
+{
+    margin: 0 auto;
+}
+
+#footer .content p
+{
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    color: #868e96;
+    font-size: 18px;
+    padding-right: 35px;
+    font-family: Montserrat;
+}
+
+#footer .content p a
+{
+    color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+}
+
+/*
+END FOOTER
+*/

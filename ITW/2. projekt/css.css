@@ -1,0 +1,184 @@
+@font-face {
+    font-family: Benguiat;
+    src: url(ITC\ Benguiat\ Book.ttf);
+  }
+
+html 
+{
+    scroll-behavior: smooth;
+}
+
+body
+{
+    margin: 0 auto;
+    background-color: black;
+}
+
+header
+{
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 24px;
+    height: 525px;
+    background-image: url(2B-image.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+nav
+{
+    
+    margin: 0 auto;
+    margin-top: -53px;
+    width: 100%;
+    text-align: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0; 
+    background-color:rgba(0,0,0,.5);
+}
+
+.sticky
+{
+    background-color:rgba(0,0,0,1); 
+}
+
+main
+{
+    margin: 0 auto;
+    width: 100%;
+}
+footer
+{
+    margin: 0 auto;
+    margin-top: 30PX;
+    width: 100%;
+
+}
+
+hr
+{
+    margin: 0 auto;
+    padding: 0;
+}
+
+.logo
+{
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+    width: 788px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+ol 
+{
+    display:inline-block;
+    list-style: none;
+    width: 788px; 
+    margin: 0;
+    padding: 0;
+}
+
+.list
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+li a {
+    float: left;
+    color: white;
+    font: 18px "Benguiat",sans-serif;
+    font-style: normal;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 14px 16px;
+}
+
+li a:hover
+{
+    color:#999;
+    text-decoration: underline;
+    background-color: rgba(55, 55, 55,.4);
+}
+section
+{
+    margin-bottom: 30px;
+}
+h1
+{
+    color: #999;
+    font-family: 'Roboto', sans-serif, 'Ebrima';
+}
+
+p
+{
+    font-family: 'Roboto', sans-serif, 'Ebrima';
+    color: #999;
+    text-indent: 4em;
+}
+
+.content
+{
+    margin: 0 auto;
+    max-width: 788px;
+    text-align: justify;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 60px;
+}
+.content1
+{
+    margin: 0 auto;
+    max-width: 788px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
+.images
+{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin: 0 auto;
+    max-width: 788px;
+    display: flex;
+    justify-content: center;
+}
+
+.img 
+{
+    max-width:380px;
+    margin-right: 10px;
+    width: 100%; 
+    height:214px;
+    padding-right: 5px;
+}
+#about, #personality, #gameplay, #apperances
+{
+    height: 60px;
+}
+
+@media screen and (max-width: 805px) 
+{
+    .logo, header
+    {
+        display: none;
+    }
+    main
+    {
+        margin-top: 100px;
+    }
+    
+    .list, ol
+    {
+        width: 100%;
+        overflow: hidden;
+    }
+}
