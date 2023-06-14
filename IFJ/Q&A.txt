@@ -1,0 +1,13 @@
++ Proč jste používali dvojprůchod, když stejně máte u funkce položku jestli je definována nebo ne?
+
+	Dvojprůchodové syntaktické analýzy využíváme za účelem zjištění jestli je daný identifikátor, identifikátorem proměnné 		nebo funkce, pravdivostní promměná ve struktuře funkce nám říká, jestli v danou chvíli během 2. běhu syntaktické analýzy 	je funkce skutečně již LEXIKÁLNĚ definována ( sématika )
+
++ Jak jsme rozlišovali klíčová slova od identifkátoru ?
+	Toto rozlišení se samozřejmě děje již na úrovni lexikální analýzy, při čemž před každým odesláním tokenu ¨ ID ¨ zkontrolujeme jestli se dané ID nevyskytuje v tabulce klíčových slov, pokud ano, tak se odešle token daného klíčového slova, (toto rozlišení je implementováno pomocí projití pole klíčových slov a funkce ze string.h na rovnost řetězců )
+
++ Jak jste poznali zda li po přiřazení následuje volání funkce, či výraz?
+	K tomuto účelu jsme v naší implementaci museli použít pomocké struktury tokenu (TMPtoken)
+
++ Proč lokální tabulku symbolů neimplementujete pomocí Binárního vyhledávacího stromu, jako globální 	tabulku symbolů ( máme implemetováno pomocí zásobníku )
+
+	K tomu nás vedlo původní nepochopení specifikace platnosti proměnné v jazyce IFJ2018, kde je promenná v dané funkci / hlavním těle definována od jejího prvního lexikálního použití (musí tam být i přiřazení jinak je to sématická chyba), naší původní představou bylo že platnost proměnné funguje na bázi tz. "vnořování" jako například v jazyce C. Tudíš naší představou bylo si každý IF-ELSE definovat jako speciální typ ¨funkce¨který by následně dle svého zanoření dědil zásobníky lokálních proměnných od svých rodičů ( rodič nevidí na proměnné potomka ) čímž by jsme zajistlili rozsah platnosti proměnné ve vnoření. Bohužel toto byla zbytečná práce protože v jazyce IFJ2018 to takhle nefunguje, takže jsme to nakonec museli předělat na jednoduší řešení dle zadání.

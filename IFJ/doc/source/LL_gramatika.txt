@@ -1,0 +1,51 @@
+﻿PROGRAM -> PROGRAM-BODY eof
+================================
+
+PROGRAM-BODY -> STATEMENT PROGRAM-BODY
+PROGRAM-BODY -> FUNCTION PROGRAM-BODY
+PROGRAM-BODY -> eps
+================================
+
+FUNCTION -> def id ( PARAMS ) eol IN-BLOCK end
+================================
+
+PARAMS -> id PARAMS-NEXT
+PARAMS -> eps
+================================
+
+PARAMS-NEXT -> , id PARAMS-NEXT
+PARAMS-NEXT -> eps
+================================
+
+IN-BLOCK -> STATEMENT IN-BLOCK
+IN-BLOCK -> eps
+================================
+
+STATEMENT -> if E then eol IN-BLOCK else eol IN-BLOCK end
+STATEMENT -> while E do eol IN-BLOCK end
+STATEMENT -> id = VALUE eol
+STATEMENT -> VALUE eol
+STATEMENT -> eol
+================================
+
+VALUE -> E
+VALUE -> id PARAMS-CALL
+================================
+
+PARAMS-CALL -> ( FUNCTION-CALL-PARAMS )
+PARAMS-CALL -> FUNTCION-CALL-PARAMS
+================================
+
+FUNCTION-CALL-PARAMS -> int FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS -> id FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS -> string FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS -> float FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS -> eps
+================================
+
+FUNCTION-CALL-PARAMS-NEXT -> int , FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS-NEXT -> id , FUNCTION-CALL-PARAMS-NEXT
+FUNTCION-CALL-PARAMS-NEXT -> string , FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS-NEXT -> float ,  FUNCTION-CALL-PARAMS-NEXT
+FUNCTION-CALL-PARAMS-NEXT -> eps
+================================
