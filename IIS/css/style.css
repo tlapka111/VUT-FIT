@@ -1,0 +1,258 @@
+.registration_form{
+	margin-left: 3vw;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+}
+
+.registration_button{
+	width: 10vw;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	font-weight: bold;
+}
+
+.address_parts{
+	margin-bottom: 0.5vw;
+}
+
+.required_elements {
+	color: red;
+	font-size: large;
+}
+
+.registration_link{
+	color: gray;
+}
+
+.navbar_elemement{
+	font-weight: lighter;
+	font-size: large;
+}
+
+.home_page{
+	margin-left: 5vw;
+	margin-top: 20vw;
+}
+
+.login-form
+{
+	margin-left: 25vw;
+	margin-top: 15vw;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin: 0;
+	color: white;
+	padding-top: 8px;
+	background-color: #e50b1b;
+	font: bold 14px "Trebuchet MS",sans-serif;
+	text-align: center;
+}
+
+.nav{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 90px;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	z-index: 1;
+}
+.obr{
+	width: 208px;
+	margin-top: 6px;
+	padding-left: 10px;
+}
+.menu{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sprava{
+	padding-right: 10px;
+
+}
+
+.tabulka{
+	width: 830px;
+	padding-top:20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.search {
+	position: relative;
+	display: flex;
+}
+
+.searchTerm {
+	width: 400px;
+	border: 3px solid #e50b1b;
+	border-right: none;
+	padding: 5px;
+	height: 40px;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+	color: black;
+}
+
+.searchButton {
+	position: relative;
+	left:-5px;
+	top:2px;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #e50b1b;
+	background: #e50b1b;
+	text-align: center;
+	color: #fff;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.hrr{
+	background-color:#e50b1b;
+	height: 2px;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.nav_button{
+	text-transform: uppercase;
+	font:  18px "Trebuchet MS",sans-serif;
+	padding: 20px;
+	background-color: transparent;
+	border: none;
+	display: inline-block;
+	transition: all 0.4s ease 0s;
+}
+
+.nav_button:hover{
+	color: #ffffff !important;
+	font: 18px "Trebuchet MS",sans-serif;
+	background: #e50b1b;
+	border-color: #e50b1b !important;
+	border-radius: 35px;
+	transition: all 0.4s ease 0s;
+}
+
+.telo{
+	padding-top: 90px;
+	padding-left: 15px;
+	height: 100%;
+}
+
+.bg{
+	background-image: url("/iis/images/background.png");
+	background-position: center;
+    background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+.dropdown {
+	margin-left: auto;
+	margin-right: 40px;
+  }
+  
+.dropdown .dropbtn {
+	font-size: 16px;  
+	border: none;
+	outline: none;
+	color: black;
+	width: 200px;
+	font: bold 18px "Trebuchet MS",sans-serif;
+	padding: 14px 16px;
+	background-color: transparent;
+	margin-top: 5px;
+  }
+  
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 150px;
+	font:  16px "Trebuchet MS",sans-serif;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+  }
+  
+  .dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+	background-color: #ddd;
+  }
+  
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+
+  ul 
+  {
+	  list-style-type: none;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+	  background-color: white;
+  }
+  
+  li 
+  {
+	  margin-top: 10px;
+	  float: left;
+  }
+  
+  li:last-child {
+	  border-right: none;
+  }
+  
+  li a {
+	  float: left;
+	  display: block;
+	  color: black;
+	  text-align: center;
+	  font: bold 18px "Trebuchet MS",sans-serif;
+	  font-style: normal;
+	  text-decoration: none;
+	  padding: 14px 16px;
+  }
+  
+  li a:hover
+  {
+	  float: left;
+	  display: block;
+	  color: #e50b1b;
+	  text-align: center;
+	  font: bold 18px "Trebuchet MS",sans-serif;
+	  text-decoration: none;
+	  padding: 14px 16px;
+	  background-color: white;
+	  
+  }
+
+  .k_pokladne{
+	  font-size: 16px;
+	  font: bold 18px "Trebuchet MS",sans-serif;
+  }
+  body, html{
+      height: 100%;
+  }
+
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+#country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
+#country-list li:hover{background:#ece3d2;cursor: pointer;}
+#search-box{padding: 10px;border: #a8d4b1 1px solid;border-radius:4px; width:60px}
