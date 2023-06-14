@@ -30,5 +30,8 @@ Projekty slouží k inspiraci. Kvalita kódu nemusí být nutně nejlepší.
 |IDS - 2. část projektu	|2018/19	|5/5	|SQL skript pro vytvoření základních objektů schématu
 |IDS - 3. část projektu	|2018/19	|5/5	|SQL skript s několika dotazy SELECT 
 |IPK - 1. projekt 	|2018/19	|20/20	|OpenWeatherMap API
+|IPP - 1. projekt	|2019/20	|7/7	|
+|ITW - 1. projekt 	|2019/20	|20/20	| 
+|ITW - 2. projekt	|2019/20	|15/20	|
 
 		
