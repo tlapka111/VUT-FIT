@@ -1,0 +1,404 @@
+#!/bin/sh
+
+####################################
+#######  IOS projekt 1
+#######  Tomáš Tlapák
+#######	 xtlapa00        
+####################################
+
+#realpath_test
+
+if [ ! -x "$(command -v realpath)" ]; then
+	echo 'chyba: utilita realpath není nainstalována.' >&2
+	exit 1
+
+fi
+
+#WEDI_RC path
+
+if [ -z "$WEDI_RC" ]; then
+	echo "chyba: WEDI_RC nemá nastavenou cestu pro ukládání." >&2
+	exit 1
+
+else 
+
+	if [ ! -f "$(basename "$WEDI_RC")" ] && [ -d "$(dirname "$WEDI_RC")" ]; then
+		touch "$(dirname "$WEDI_RC")"/"$(basename "$WEDI_RC")"
+
+ 	else mkdir -p "$(dirname "$WEDI_RC")" && touch $WEDI_RC 
+	
+	fi
+fi
+
+#OS test
+VERZE=$(uname)
+
+#smazaní neexistujících cest z log_file
+while read -r var
+do
+	SOUBOR=`echo $var | cut -f1 -d ':'`
+	if [ ! -f $SOUBOR ]; then
+		if [ $VERZE = "FreeBSD" ]; then
+			gsed -i "\\_${var}_d" "$WEDI_RC"
+		else sed -i "\\_${var}_d" "$WEDI_RC"		
+		fi	
+	fi
+done < "$WEDI_RC"
+
+
+#editting - nastavení editoru a otevření souboru
+
+editting()
+{
+	if [ -z "$EDITOR" ] && [ -z "$VISUAL" ]; then
+		vi $SOUBOR_CESTA	
+	
+	else
+		if [ ! -z "$EDITOR" ]; then
+			$EDITOR $SOUBOR_CESTA
+		
+		else  
+		        if [ -z "$EDITOR" ] && [ ! -z "$VISUAL" ]; then
+		        	$VISUAL $SOUBOR_CESTA
+		        
+		        fi
+		fi
+	fi
+	
+	if [ $? = "0" ];then 
+		echo "$(realpath "$SOUBOR_CESTA"):$(date +%Y-%m-%d)" >> $WEDI_RC
+	fi
+}
+
+#editace souboru s $#=1
+#pokud argument odkazuje na existujici soubor
+if [ -f "$1" ] && [ "$#" = "1" ]; then
+	SOUBOR_CESTA=$1	 
+	editting
+	exit $?
+
+#pokud argument odkazuje na existujicí adresář- otevření posledního editované souboru	
+else 
+	if [ -d "$1" ] && [ "$#" = "1" ]; then
+		SOUBOR_CESTA=$(realpath $1)    
+		polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | tail -n1 | cut -f1 -d ':'`	
+		
+		#pokud nebyl editován žádný soubor v adresáři
+		if [ -z "$polozky" ]; then
+			echo "error: v zadaném adresáři nebyl editován žádný soubor." >&2	
+			exit 1
+
+		else  SOUBOR_CESTA=$polozky editting
+			exit $?
+
+		fi
+
+	#pokud neni argument platná cesta nebo je neplatný počet argumentů	
+	else 
+		if [ -d "$1" ] && [ "$#" -gt "1" ]; then
+			echo "error: nesprávný počet argumentů." >&2	
+		exit 1
+		
+		else 
+			if [ ! -d "$1" ] && [ "$#" = "1" ] && [ "$1" != "-l" ] && [ "$1" != "-m" ] && [ "$1" != "-a" ] && [ "$1" != "-b" ] ; then
+				echo "error: zadaný adresář neexistuje." >&2
+				exit 1
+			else 
+				if [ ! -d "$1" ] && [ "$#" -gt "1" ] && [ "$1" != "-l" ] && [ "$1" != "-m" ] && [ "$1" != "-a" ] && [ "$1" != "-b" ]; then
+					echo "error: zadaný adresář neexistuje, nesprávný počet argumentů." >&2
+					exit 1
+				fi
+			fi
+		fi	
+	fi 	
+fi 
+
+#editace souboru v adresari s $# = 0
+
+if [ "$#" = "0" ]; then
+	SOUBOR_CESTA=$(realpath .)    
+	polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | tail -n1 | cut -f1 -d ':'`	
+		
+	#pokud nebyl editován žádný soubor v adresáři
+	if [ -z "$polozky" ]; then
+		echo "error: v aktuálním adresáři nebyl editován žádný soubor." >&2	
+		exit 1
+
+		else  SOUBOR_CESTA=$polozky editting
+			exit $?
+	fi	
+fi
+
+#výpis souborů s $1=-l
+
+if [ "$1" = "-l" ] && [ "$#" = "1" ]; then
+	SOUBOR_CESTA=$(realpath .)    
+	polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | cut -f1 -d ':' | sort -u`	
+		
+	#pokud nebyl editován žádný soubor v adresáři
+	if [ -z "$polozky" ]; then
+		echo "error: v aktuálním adresáři nebyl editován žádný soubor." >&2	
+		exit 1
+
+		#výpis
+		else 
+			for i in $polozky 
+			do
+				echo "$i" 
+			done
+		exit
+
+	fi
+else
+	if [ "$1" = "-l" ] && [ -d "$2" ] && [ "$#" = "2" ]; then
+		SOUBOR_CESTA=$(realpath $2)
+		polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | cut -f1 -d ':' | sort -u`	
+		
+		#pokud nebyl editován žádný soubor v adresáři
+		if [ -z "$polozky" ]; then
+			echo "error: v daném adresáři nebyl editován žádný soubor." >&2	
+			exit 1
+
+		#výpis
+		else 
+			for i in $polozky 
+			do
+				echo "$i" 
+			done
+		fi
+	else
+		if [ "$1" = "-l" ] && [ -d "$2" ] && [ "$#" -gt "2" ]; then
+			echo "error: neplatný počet argumentů." >&2
+			exit 1
+		else
+			if [ "$1" = "-l" ] && [ ! -d "$2" ] && [ "$#" = "2" ]; then
+				echo "error: zadaný adresář neexistuje." >&2
+				exit 1
+			else	
+				if	[ "$1" = "-l" ] && [ ! -d "$2" ] && [ "$#" -gt "2" ]; then		
+					echo "error: zadaný adresář neexistuje, nesprávný počet argumentů." >&2
+					exit 1		
+				fi
+			fi
+		fi
+	fi
+fi
+
+#editace nejčastěji editovaného souboru
+
+if [ "$1" = "-m" ] && [ "$#" = "1" ]; then
+	SOUBOR_CESTA=$(realpath .)    
+	polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | cut -f1 -d ':' | sort | uniq -c | sort -n | tail -n1 | awk '{print $2}'`	
+
+	#pokud nebyl editován žádný soubor v adresáři
+	if [ -z "$polozky" ]; then
+		echo "error: v aktuálním adresáři nebyl editován žádný soubor." >&2	
+		exit 1
+
+		#výpis
+		else SOUBOR_CESTA=$polozky editting
+			exit $?		
+	fi
+else
+	if [ "$1" = "-m" ] && [ -d "$2" ] && [ "$#" = "2" ] ; then
+		SOUBOR_CESTA=$(realpath $2)
+		polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | cut -f1 -d ':' | sort | uniq -c | sort -n | tail -n1 | awk '{print $2}'`	
+		
+		#pokud nebyl editován žádný soubor v adresáři
+		if [ -z "$polozky" ]; then
+			echo "error: v daném adresáři nebyl editován žádný soubor." >&2	
+			exit 1
+
+		#výpis
+		else SOUBOR_CESTA=$polozky editting
+			exit $?
+		fi
+	else
+		if [ "$1" = "-m" ] && [ -d "$2" ] && [ "$#" -gt "2" ]; then
+			echo "error: neplatný počet argumentů." >&2
+			exit 1
+		else
+			if [ "$1" = "-m" ] && [ ! -d "$2" ] && [ "$#" = "2" ]; then
+				echo "error: zadaný adresář neexistuje." >&2
+				exit 1
+			else	
+				if	[ "$1" = "-m" ] && [ ! -d "$2" ] && [ "$#" -gt "2" ]; then		
+					echo "error: zadaný adresář neexistuje, nesprávný počet argumentů." >&2
+					exit 1		
+				fi
+			fi
+		fi
+	fi
+fi
+
+#výpis souborů po určitém datu $1=-a
+if [ "$1" = "-a" ] && [ "$#" = "1" ]; then
+	echo "error: nesprávný počet argumentů" >&2
+	exit 1
+else
+	if [ "$1" = "-a" ] && [ "$#" = "2" ]; then
+		#převod data na číslo pro porovnávaní
+		if [ $VERZE = "FreeBSD" ]; then
+			DATUM=$(gdate -d "$2" +"%Y-%m-%d" | sed  "s/-//g")
+		else DATUM=$(date -d "$2" +"%Y-%m-%d" | sed  "s/-//g")		
+		fi		
+		if [ -z $DATUM ]; then
+			exit 1
+		else
+			SOUBOR_CESTA=$(realpath .)
+			polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | sort`			
+			#pomocna proměnná pro odstranení duplikátů
+			FILE_NAME="test"			
+			for i in $polozky 
+			do
+				#prirazeni data ve formátu čísla všech polozek do $AFTER
+      				AFTER=`echo $i |cut -f2 -d ':' | sed "s/-//g"`
+				#pokud $AFTER >= $DATUM
+      				if [ $AFTER -ge $DATUM ]; then
+        				VYPIS_AFTER=`echo $i | cut -f1 -d ':'`
+					#odstranění duplikátních výpisů
+					if [ "$FILE_NAME" != "$VYPIS_AFTER" ]; then
+						echo $VYPIS_AFTER
+						FILE_NAME=$VYPIS_AFTER
+					fi
+				fi
+    			done
+			if [ -z "$VYPIS_AFTER" ]; then
+				echo "error: žádná shoda pro dané datum a novější." >&2
+				exit 1
+			fi
+		fi
+	
+	else 
+		if [ "$1" = "-a" ] && [ -d "$3" ] && [ "$#" = "3" ]; then
+			#převod data na číslo pro porovnávaní
+			if [ $VERZE = "FreeBSD" ]; then
+				DATUM=$(gdate -d "$2" +"%Y-%m-%d" | sed  "s/-//g")
+			else DATUM=$(date -d "$2" +"%Y-%m-%d" | sed  "s/-//g")		
+			fi		
+			if [ -z $DATUM ]; then
+				exit 1
+			else
+				SOUBOR_CESTA=$(realpath $3)
+				polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | sort`			
+				#pomocna proměnná pro odstranení duplikátů
+				FILE_NAME="test"			
+				for i in $polozky 
+				do
+					#prirazeni data ve formátu čísla všech polozek do $AFTER
+      					AFTER=`echo $i |cut -f2 -d ':' | sed "s/-//g"`
+					#pokud $AFTER >= $DATUM
+      					if [ $AFTER -ge $DATUM ]; then
+        					VYPIS_AFTER=`echo $i | cut -f1 -d ':'`
+						#odstranění duplikátních výpisů
+						if [ "$FILE_NAME" != "$VYPIS_AFTER" ]; then
+							echo $VYPIS_AFTER
+							FILE_NAME=$VYPIS_AFTER
+						fi
+					fi
+    				done
+				if [ -z "$VYPIS_AFTER" ]; then
+					echo "error: žádná shoda pro dané datum a novější." >&2
+					exit 1
+				fi
+				
+			fi
+		else
+			if [ "$1" = "-a" ] && [ ! -d "$3" ] && [ "$#" = "3" ]; then	
+				echo "error: zadaný adresář neexistuje." >&2
+				exit 1
+			else
+				if [ "$#" -gt "3" ]; then
+					echo "error: nesprávný počet argumentů." >&2
+					exit 1
+				fi	
+			fi
+		fi
+	fi
+fi
+
+#výpis souborů po určitém datu $1=-b
+if [ "$1" = "-b" ] && [ "$#" = "1" ]; then
+	echo "error: nesprávný počet argumentů" >&2
+	exit 1
+else
+	if [ "$1" = "-b" ] && [ "$#" = "2" ]; then
+		#převod data na číslo pro porovnávaní
+		if [ $VERZE = "FreeBSD" ]; then
+			DATUM=$(gdate -d "$2" +"%Y-%m-%d" | sed  "s/-//g")
+		else DATUM=$(date -d "$2" +"%Y-%m-%d" | sed  "s/-//g")		
+		fi		
+		if [ -z $DATUM ]; then
+			exit 1
+		else
+			SOUBOR_CESTA=$(realpath .)
+			polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | sort`			
+			#pomocna proměnná pro odstranení duplikátů
+			FILE_NAME="test"			
+			for i in $polozky 
+			do
+				#prirazeni data ve formátu čísla všech polozek do $AFTER
+      				BEFORE=`echo $i |cut -f2 -d ':' | sed "s/-//g"`
+				#pokud $BEFORE < $DATUM
+      				if [ $BEFORE -lt $DATUM ]; then
+        				VYPIS_BEFORE=`echo $i | cut -f1 -d ':'`
+					#odstranění duplikátních výpisů
+					if [ "$FILE_NAME" != "$VYPIS_BEFORE" ]; then
+						echo $VYPIS_BEFORE
+						FILE_NAME=$VYPIS_BEFORE
+					fi
+				fi
+    			done
+			if [ -z "$VYPIS_BEFORE" ]; then
+				echo "error: žádná shoda pro dané datum a starší." >&2
+				exit 1
+			fi
+		fi
+	
+	else 
+		if [ "$1" = "-b" ] && [ -d "$3" ] && [ "$#" = "3" ]; then
+			#převod data na číslo pro porovnávaní
+			if [ $VERZE = "FreeBSD" ]; then
+				DATUM=$(gdate -d "$2" +"%Y-%m-%d" | sed  "s/-//g")
+			else DATUM=$(date -d "$2" +"%Y-%m-%d" | sed  "s/-//g")		
+			fi		
+			if [ -z $DATUM ]; then
+				exit 1
+			else
+				SOUBOR_CESTA=$(realpath $3)
+				polozky=`grep "$SOUBOR_CESTA/[^/]*:" "$WEDI_RC" | sort`			
+				#pomocna proměnná pro odstranení duplikátů
+				FILE_NAME="test"			
+				for i in $polozky 
+				do
+					#prirazeni data ve formátu čísla všech polozek do $AFTER
+      					BEFORE=`echo $i |cut -f2 -d ':' | sed "s/-//g"`
+					#pokud $AFTER < $DATUM
+      					if [ $BEFORE -lt $DATUM ]; then
+        					VYPIS_BEFORE=`echo $i | cut -f1 -d ':'`
+						#odstranění duplikátních výpisů
+						if [ "$FILE_NAME" != "$VYPIS_BEFORE" ]; then
+							echo $VYPIS_BEFORE
+							FILE_NAME=$VYPIS_BEFORE
+						fi
+					fi
+    				done
+				if [ -z "$VYPIS_BEFORE" ]; then
+					echo "error: žádná shoda pro dané datum a starší." >&2
+					exit 1
+				fi
+				
+			fi
+		else
+			if [ "$1" = "-b" ] && [ ! -d "$3" ] && [ "$#" = "3" ]; then	
+				echo "error: zadaný adresář neexistuje." >&2
+				exit 1
+			else
+				if [ "$#" -gt "3" ]; then
+					echo "error: nesprávný počet argumentů." >&2
+					exit 1
+				fi	
+			fi
+		fi
+	fi
+fi
