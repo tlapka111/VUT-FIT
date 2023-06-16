@@ -1,2 +1,2 @@
 # IIS-projekt
-Skupinový projekt do předmětu IIS
+Informační systém pro jídelnu - objednávky a rozvoz jídel 
